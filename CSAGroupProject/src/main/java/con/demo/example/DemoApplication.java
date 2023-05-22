@@ -27,6 +27,7 @@ public class DemoApplication
     GameController gameController = new GameController();
 	public static void main(String... args) 
     {
+        System.out.println("test");
         SpringApplication.run(DemoApplication.class, args);
     }
 
