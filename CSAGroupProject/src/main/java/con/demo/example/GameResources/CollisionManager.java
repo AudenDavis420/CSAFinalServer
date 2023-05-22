@@ -3,12 +3,7 @@ package con.demo.example.GameResources;
 public class CollisionManager 
 {
     
-    public static void main(String[] args) 
-    {
-        LinearCollider collider1 = new LinearCollider(new Vector2(-10.0, 0.0), new Vector2(0.0, 0.0));
-        LinearCollider collider2 = new LinearCollider(new Vector2(10.0, -5.0), new Vector2(10.0, 5.0));
-        System.out.println(getCollision(collider1,collider2));
-    }
+    
 
     public static Vector2 getCollision(LinearCollider collider1, LinearCollider collider2)
     {
