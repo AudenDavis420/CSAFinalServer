@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import con.demo.example.GameResources.*;
@@ -19,7 +18,6 @@ import con.demo.example.GameResources.*;
 
 
 @SpringBootApplication
-@RequestMapping("/game")
 @RestController
 public class DemoApplication 
 {
@@ -35,7 +33,7 @@ public class DemoApplication
 	@GetMapping("/exampleUnit")
     public Unit getExampleUnit()
     {
-        return new Unit(1, "rifle", "ranged", 100, 10, 50, 1);
+        return new Unit(1, "rifle", "ranged", 100, 10, 50, 1,10);
     }
 
     @GetMapping("/examplePlayer")
@@ -53,7 +51,7 @@ public class DemoApplication
     @GetMapping("/exampleGameSquare")
     public GameSquare exampleGameSquare()
     {
-        return new GameSquare("grass", new Unit(1, "rifle", "ranged", 100, 10, 50, 1));
+        return new GameSquare("grass", new Unit(1, "rifle", "ranged", 100, 10, 50, 1,10));
     }
 
     @GetMapping("/exampleGame")
@@ -68,7 +66,7 @@ public class DemoApplication
         {
             for (int x = 0; x < 3; x++)
             {
-                board[y][x] = new GameSquare("grass", new Unit(1, "rifle", "ranged", 100, 10, 50, 1));
+                board[y][x] = new GameSquare("grass", new Unit(1, "rifle", "ranged", 100, 10, 50, 1,10));
             }
         }
 
@@ -87,7 +85,7 @@ public class DemoApplication
     @GetMapping("/joinGame")
     public Player joinGame()
     {
-        System.out.println("hello world");
+        System.out.println("new player joined");
         return gameController.addPlayer();
         
     }
@@ -96,7 +94,7 @@ public class DemoApplication
     public Answer startGame(@PathVariable int id)
     {
         return gameController.startGame(id);
-    }
+    } 
 
     @GetMapping("/gameMap/{id}")
     public Game getMap(@PathVariable int id)

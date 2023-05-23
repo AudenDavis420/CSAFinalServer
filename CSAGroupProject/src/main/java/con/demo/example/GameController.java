@@ -16,6 +16,7 @@ public class GameController
     {
         this.game = game;
         unitMobility.put("archer", 2);
+        
     }
 
     public GameController()
@@ -31,7 +32,7 @@ public class GameController
             }
         }
 
-        board[1][1] = new GameSquare("sand", new Unit(1, "archer", "ranged", 100, 10, 50, 2));
+        board[1][1] = new GameSquare("sand", new Unit(1, "archer", "ranged", 100, 10, 50, 2,15));
 
 
         game = new Game(playerList,board,1);
@@ -83,11 +84,12 @@ public class GameController
             return Answer.TRUE;
             
         }
-        if(game.getBoard()[move.getGoalY()][move.getGoalX()].getUnit() != null){return Answer.FALSE;}
-        if(game.getBoard()[move.getStartY()][move.getStartX()].getUnit() == null){return Answer.FALSE;}
-        if(game.getBoard()[move.getStartY()][move.getStartX()].getUnit().getMobility() <= 0){return Answer.FALSE;}
+        
         if (move.getMoveType().equals("move"))
         {   
+            if(game.getBoard()[move.getGoalY()][move.getGoalX()].getUnit() != null){return Answer.FALSE;}
+            if(game.getBoard()[move.getStartY()][move.getStartX()].getUnit() == null){return Answer.FALSE;}
+            if(game.getBoard()[move.getStartY()][move.getStartX()].getUnit().getMobility() <= 0){return Answer.FALSE;}
             if (game.getBoard()[move.getGoalY()][move.getGoalX()].getUnit() != null)
             {
                 return Answer.FALSE;
@@ -104,6 +106,12 @@ public class GameController
             game.getBoard()[move.getGoalY()][move.getGoalX()].setUnit( game.getBoard()[move.getStartY()][move.getStartX()].getUnit() );
             game.getBoard()[move.getStartY()][move.getStartX()].setUnit(null);
             game.getBoard()[move.getGoalY()][move.getGoalX()].getUnit().setMobility(game.getBoard()[move.getGoalY()][move.getGoalX()].getUnit().getMobility()-1);
+        }
+        
+        
+        if (move.getMoveType().equals("attack"))
+        {
+            
         }
         System.out.println(game);
         return Answer.TRUE;

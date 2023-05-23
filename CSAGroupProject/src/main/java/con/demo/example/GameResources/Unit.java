@@ -8,6 +8,8 @@ public class Unit
     private int health;
     private float range;
     private int damage;
+    private int wallDamage;
+    
     
     private float mobility; 
 
@@ -32,7 +34,10 @@ public class Unit
     public float getMobility(){return mobility;}
     public void setMobility(float Mobility){mobility = Mobility;}
 
-    public Unit(int Team, String Type, String AttackType, int Health, float Range, int Damage, float Mobility)
+    public int getWallDamage(){return wallDamage;}
+    public void setWallDamage(int WallDamage){wallDamage = WallDamage;}
+
+    public Unit(int Team, String Type, String AttackType, int Health, float Range, int Damage, float Mobility, int WallDamage)
     {
         team = Team;
         type = Type;
@@ -41,5 +46,6 @@ public class Unit
         range = Range;
         damage = Damage;
         mobility = Mobility;
+        wallDamage = WallDamage;
     }
 }

@@ -14,4 +14,8 @@ public class LinearCollider
     public void setEnd(Vector2 End){end = End;}
 
     
+    public String toString()
+    {
+        return "Linear Collider: " + start.toString() + " ==> " + end.toString();
+    }
 }
