@@ -41,7 +41,7 @@ public class Game
         {
             returnString += "-";
         }
-        returnString += "+";
+        returnString += "+\n";
 
         for(int y = board.length - 1; y >= 0; y--)
         {
@@ -54,7 +54,7 @@ public class Game
                 }
                 else
                 {
-                    returnString += board[y][x].getUnit().getAttackType().substring(0,1);
+                    returnString += board[y][x].getUnit().getType().substring(0,1);
                 }
             }
             returnString += "|\n";

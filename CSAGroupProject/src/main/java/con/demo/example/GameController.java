@@ -16,23 +16,26 @@ public class GameController
     {
         this.game = game;
         unitMobility.put("archer", 2);
+        unitMobility.put("barbarian", 2);
+        unitMobility.put("giant", 1);
         
     }
 
     public GameController()
     {
         ArrayList<Player> playerList = new ArrayList<>();
-        GameSquare[][] board = new GameSquare[10][10];
+        GameSquare[][] board = new GameSquare[2][2];
 
-        for (int y = 0; y < 10; y++)
+        for (int y = 0; y < 2; y++)
         {
-            for (int x = 0; x < 10; x++)
+            for (int x = 0; x < 2; x++)
             {
                 board[y][x] = new GameSquare("grass", null);
             }
         }
 
         board[1][1] = new GameSquare("sand", new Unit(1, "archer", "ranged", 100, 10, 50, 2,15));
+        board[0][0] = new GameSquare("sand", new Unit(1, "giant", "melee", 400, 1, 50, 1,50));
 
 
         game = new Game(playerList,board,1);
@@ -62,6 +65,7 @@ public class GameController
     {
         //if(game.getBoard()[move.getGoalY()][move.getGoalX()] != null && game.getBoard()[move.getGoalY()][move.getGoalX()].getUnit().getTeam() != game.getCurrentPlayerTurn())
         if (playerId != game.getCurrentPlayerTurn()){return Answer.FALSE;}
+
         if (move.getMoveType().equals("end"))
         {
 
@@ -69,7 +73,12 @@ public class GameController
             {
                 for (GameSquare square : row)
                 {
-                    if (square.getUnit() != null){square.getUnit().setMobility(unitMobility.get(square.getClass().getName()));}
+                    
+                    if (square.getUnit() != null)
+                    {
+                        System.out.println(square.getUnit().getType()); 
+                        square.getUnit().setMobility(unitMobility.get(square.getUnit().getType()).intValue());
+                    }
                 }
             }
 
@@ -81,6 +90,8 @@ public class GameController
             }
 
             game.setCurrentPlayerTurn(game.getCurrentPlayerTurn() + 1);
+
+
             return Answer.TRUE;
             
         }
@@ -100,21 +111,28 @@ public class GameController
             }
             if(Math.abs(move.getGoalX() - move.getStartX()) > 1 || Math.abs(move.getGoalY()- move.getStartY()) > 1)
             {
+                System.out.println("to far");
                 return Answer.FALSE;
             }
             
             game.getBoard()[move.getGoalY()][move.getGoalX()].setUnit( game.getBoard()[move.getStartY()][move.getStartX()].getUnit() );
             game.getBoard()[move.getStartY()][move.getStartX()].setUnit(null);
             game.getBoard()[move.getGoalY()][move.getGoalX()].getUnit().setMobility(game.getBoard()[move.getGoalY()][move.getGoalX()].getUnit().getMobility()-1);
+            
+            
+            return Answer.TRUE;
         }
         
         
         if (move.getMoveType().equals("attack"))
         {
-            
+            if(game.getBoard()[move.getStartY()][move.getStartX()].getUnit().getAttackType().equals("melee"))
+            {
+                
+            }
         }
         System.out.println(game);
-        return Answer.TRUE;
+        return Answer.FALSE;
     }
 
 }

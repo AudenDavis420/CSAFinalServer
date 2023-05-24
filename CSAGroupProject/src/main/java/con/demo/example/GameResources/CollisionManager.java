@@ -1,7 +1,6 @@
 package con.demo.example.GameResources;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class CollisionManager 
 {
@@ -23,7 +22,7 @@ public class CollisionManager
             {
                 if (board[y][x].getUnit() != null)
                 {
-                    if (board[y][x].getUnit().getType().equals("wall"))
+                    if (board[y][x].getUnit().getType().equals("wall") && x != moveRequest.getGoalX() && y != moveRequest.getGoalY())
                     {
                         colliderList.add(new LinearCollider(new Vector2(0.0 + y, 0.0 + x), new Vector2(0.0 + y, 1.0 + x)));
                         colliderList.add(new LinearCollider(new Vector2(0.0 + y, 1.0 + x), new Vector2(1.0 + y, 1.0 + x)));
@@ -38,8 +37,14 @@ public class CollisionManager
         for (LinearCollider collider: colliderList)
         {
             System.out.println(collider);
+            LinearCollider testCollider = new LinearCollider(new Vector2(moveRequest.getStartX() + 0.5, moveRequest.getStartY() + 0.5), new Vector2(moveRequest.getGoalX() + 0.5, moveRequest.getGoalY() + 0.5));
+            if (getCollision(collider, testCollider) == null)
+            {
+                return false;
+            }
         }
 
+    
         return true;
     }
     
