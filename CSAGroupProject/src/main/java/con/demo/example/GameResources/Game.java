@@ -1,5 +1,8 @@
 package con.demo.example.GameResources;
 
+//@Author Auden
+//@Author Dhruv
+
 import java.util.ArrayList;
 
 public class Game 

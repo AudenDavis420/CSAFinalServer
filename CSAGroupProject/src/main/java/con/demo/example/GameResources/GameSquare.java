@@ -1,5 +1,7 @@
 package con.demo.example.GameResources;
 
+//@Author Dhruv
+
 public class GameSquare {
     private String terrain;
     private Unit unit;

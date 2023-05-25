@@ -1,5 +1,7 @@
 package con.demo.example.GameResources;
 
+//@Author Auden
+
 import java.util.ArrayList;
 
 public class CollisionManager 

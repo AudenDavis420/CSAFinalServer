@@ -1,5 +1,7 @@
 package con.demo.example.GameResources;
 
+//@Author Auden
+
 public class LinearCollider
 {
     private Vector2 start;

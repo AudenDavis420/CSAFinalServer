@@ -1,5 +1,7 @@
 package con.demo.example.GameResources;
 
+//@Author Auden
+
 public class Vector2 
 {   
     private double x;

@@ -1,6 +1,6 @@
 package con.demo.example.GameResources;
 
-
+//@Author Auden
 
 public class Answer {
     private boolean response;

@@ -1,5 +1,6 @@
 package con.demo.example;
 
+//@Author Auden
 
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class DemoApplication
 	@GetMapping("/exampleUnit")
     public Unit getExampleUnit()
     {
-        return new Unit(1, "rifle", "ranged", 100, 10, 50, 1,10);
+        return new Unit(1, "rifle", "ranged", 100, 10, 50, 1,10,2);
     }
 
     @GetMapping("/examplePlayer")
@@ -51,7 +52,7 @@ public class DemoApplication
     @GetMapping("/exampleGameSquare")
     public GameSquare exampleGameSquare()
     {
-        return new GameSquare("grass", new Unit(1, "rifle", "ranged", 100, 10, 50, 1,10));
+        return new GameSquare("grass", new Unit(1, "rifle", "ranged", 100, 10, 50, 1,10,2));
     }
 
     @GetMapping("/exampleGame")
@@ -66,7 +67,7 @@ public class DemoApplication
         {
             for (int x = 0; x < 3; x++)
             {
-                board[y][x] = new GameSquare("grass", new Unit(1, "rifle", "ranged", 100, 10, 50, 1,10));
+                board[y][x] = new GameSquare("grass", new Unit(1, "rifle", "ranged", 100, 10, 50, 1,10,2));
             }
         }
 

@@ -1,5 +1,7 @@
 package con.demo.example.GameResources;
 
+//@Author Dhruv
+
 public class Unit 
 {
     private int team;
@@ -9,6 +11,7 @@ public class Unit
     private float range;
     private int damage;
     private int wallDamage;
+    private int attacksLeft;
     
     
     private float mobility; 
@@ -37,7 +40,10 @@ public class Unit
     public int getWallDamage(){return wallDamage;}
     public void setWallDamage(int WallDamage){wallDamage = WallDamage;}
 
-    public Unit(int Team, String Type, String AttackType, int Health, float Range, int Damage, float Mobility, int WallDamage)
+    public int getAttacksLeft(){return attacksLeft;}
+    public void setAttacksLeft(int AttacksLeft){attacksLeft = AttacksLeft;}
+
+    public Unit(int Team, String Type, String AttackType, int Health, float Range, int Damage, float Mobility, int WallDamage, int AttacksLeft)
     {
         team = Team;
         type = Type;
@@ -47,5 +53,11 @@ public class Unit
         damage = Damage;
         mobility = Mobility;
         wallDamage = WallDamage;
+        attackType = AttackType;
+    }
+
+    public String toString()
+    {
+        return type + ":\n     team: " + team + ":\n     Attack Type: " + attackType + "\n     health: " + health + "\n     Range: " + range + "\n     Damage: " + damage+ "\n     Mobility: " + mobility + "\n     Wall Damage: " + wallDamage  + "\n     Attacks Left: " + attacksLeft;
     }
 }
