@@ -4,13 +4,20 @@ package con.demo.example.GameResources;
 
 import java.util.ArrayList;
 
+/** 
+ * The following is the CollisionManager class, it contains all the logic pertaining to collisions
+ * **/
+
 public class CollisionManager 
 {
 
     
-
+    //takes in the MoveRequest and the game's board and determine if the move is valid
+    //the isLegalMove is only used for ranged attacks
     public static boolean isLegelMove(MoveRequest moveRequest,GameSquare[][] board)
     {
+
+        //checks if the attack is out of the unit range
         if (board[moveRequest.getStartY()][moveRequest.getStartX()].getUnit().getRange() < Math.sqrt(Math.pow(moveRequest.getStartX() - moveRequest.getGoalX(),2) + Math.pow(moveRequest.getStartY() - moveRequest.getGoalY(),2)))
         {
             return false;
@@ -18,6 +25,8 @@ public class CollisionManager
 
         ArrayList<LinearCollider> colliderList = new ArrayList<>();
 
+
+        //adds all the walls collider's to the colliderList
         for (int y = 0; y < board.length; y++)
         {
             for (int x = 0; x < board[1].length; x++)
@@ -35,7 +44,7 @@ public class CollisionManager
             }
         }
 
-
+        //checks for any collsions
         for (LinearCollider collider: colliderList)
         {
             System.out.println(collider);
@@ -46,11 +55,11 @@ public class CollisionManager
             }
         }
 
-    
+        //returns true if there are no collisions
         return true;
     }
     
-
+    //calculates the exact point of intersection of two colliders (if present)
     private static Vector2 getCollision(LinearCollider collider1, LinearCollider collider2)
     {
         double xa1 = collider1.getStart().getX();
@@ -106,7 +115,7 @@ public class CollisionManager
 
     }
 
-
+    //checks in a point is between the x and y ranges of two points
     private static boolean isBetweenPoints(Vector2 point1, Vector2 point2, Vector2 questionPoint)
     {   
         

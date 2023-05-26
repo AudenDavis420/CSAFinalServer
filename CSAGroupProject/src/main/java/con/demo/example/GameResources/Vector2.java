@@ -2,6 +2,14 @@ package con.demo.example.GameResources;
 
 //@Author Auden
 
+/** 
+ * The following is the Vector2 helper class.
+ * It represents a point in 2d space
+ * it stores a x and y double value
+ * 
+ * It also has a constructor, a toString method, and getter's and setter's 
+ * **/
+
 public class Vector2 
 {   
     private double x;

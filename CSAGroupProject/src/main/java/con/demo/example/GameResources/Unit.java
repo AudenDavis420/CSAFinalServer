@@ -2,6 +2,14 @@ package con.demo.example.GameResources;
 
 //@Author Dhruv
 
+/** 
+ * The following is the Unit helper class.
+ * It represents the unit in the game
+ * it has fields for the team, unit type, attack type, health, range, damage, wall damage, walking move left, attacks left
+ * 
+ * It also has a constructor, a toString method, and getter's and setter's 
+ * **/
+
 public class Unit 
 {
     private int team;
@@ -54,6 +62,7 @@ public class Unit
         mobility = Mobility;
         wallDamage = WallDamage;
         attackType = AttackType;
+        attacksLeft = AttacksLeft;
     }
 
     public String toString()

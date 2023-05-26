@@ -23,80 +23,33 @@ import con.demo.example.GameResources.*;
 public class DemoApplication 
 {
 
-    GameController gameController = new GameController();
+    GameController gameController = new GameController(); //creates new GameController object
 	public static void main(String... args) 
     {
-        System.out.println("test");
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(DemoApplication.class, args); //starts the SpringBoot API
     }
 
 
-	@GetMapping("/exampleUnit")
-    public Unit getExampleUnit()
-    {
-        return new Unit(1, "rifle", "ranged", 100, 10, 50, 1,10,2);
-    }
-
-    @GetMapping("/examplePlayer")
-    public Player getExamplePlayer()
-    {
-        return new Player(1);
-    }
-
-    @GetMapping("/exampleAnswer")
-    public Answer getExampleAnswer()
-    {
-        return new Answer(true);
-    }
-
-    @GetMapping("/exampleGameSquare")
-    public GameSquare exampleGameSquare()
-    {
-        return new GameSquare("grass", new Unit(1, "rifle", "ranged", 100, 10, 50, 1,10,2));
-    }
-
-    @GetMapping("/exampleGame")
-    public Game exampleGame()
-    {
-        ArrayList<Player> playerList = new ArrayList<>();
-        playerList.add(new Player(1));
-        playerList.add(new Player(2));
-        GameSquare[][] board = new GameSquare[3][3];
-
-        for (int y = 0; y < 3; y++)
-        {
-            for (int x = 0; x < 3; x++)
-            {
-                board[y][x] = new GameSquare("grass", new Unit(1, "rifle", "ranged", 100, 10, 50, 1,10,2));
-            }
-        }
-
-
-        return new Game(playerList,board,1);
-    }
-
-    @GetMapping("/exampleMoveRequest")
-    public MoveRequest exampleMoveRequest()
-    {
-        return new MoveRequest(1, 2, 3, 4, "move");
-    }
-
-
-
+    // GET request to http://<ip>/joinGame
+    //called by the client to join the game
     @GetMapping("/joinGame")
     public Player joinGame()
     {
-        System.out.println("new player joined");
-        return gameController.addPlayer();
+        return gameController.addPlayer(); //calls and returns the gameController's addPlayer method
         
     }
 
+
+    // GET request to http://<ip>/start/<player id>
+    //called by the client to start the game
     @GetMapping("/start/{id}")
     public Answer startGame(@PathVariable int id)
     {
         return gameController.startGame(id);
     } 
 
+    // GET request to http://<ip>/gameMap/<player id>
+    //called by the client to get a copy of the game (map, units, # players, and who's turn it is)
     @GetMapping("/gameMap/{id}")
     public Game getMap(@PathVariable int id)
     {

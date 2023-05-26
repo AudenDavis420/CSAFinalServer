@@ -3,6 +3,16 @@ package con.demo.example.GameResources;
 //@Author Dhruv
 //@Author Auden
 
+/** 
+ * The following is the MoveRequest helper class.
+ * It represents the move from th client that they want to preform
+ * It has an field for the start and end x and y values
+ * 
+ * it also has a field for what type of move it is, a move is either "attack", "move", or "end" (for end turn) 
+ * 
+ * It also has a constructor, a toString method, and getter's and setter's 
+ * **/
+
 public class MoveRequest 
 {
     private int startX;

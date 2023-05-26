@@ -2,6 +2,13 @@ package con.demo.example.GameResources;
 
 //@Author Auden
 
+/** 
+ * The following is the LinearCollider helper class.
+ * it represent a line for the ColliderManager to use
+ * it has a Vector2 start and end field
+ * 
+ * It also has a constructor, a toString method, and getter's and setter's 
+ * **/
 public class LinearCollider
 {
     private Vector2 start;

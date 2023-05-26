@@ -3,6 +3,16 @@ package con.demo.example.GameResources;
 //@Author Auden
 //@Author Dhruv
 
+/** 
+ * The following is the Game helper class.
+ * It represents the entire game
+ * It has an ArrayList of player that represent the current players
+ * it has a 2d array of GameSquares that represent the board
+ * it has a int field to keep track of whose turn it is 
+ * 
+ * It also has a constructor, a toString method, and getter's and setter's 
+ * **/
+
 import java.util.ArrayList;
 
 public class Game 
@@ -13,14 +23,13 @@ public class Game
 
     private int currentPlayerTurn;
 
-    private ArrayList<MoveRequest> currentMoves;
 
     public Game (ArrayList<Player> PlayerList, GameSquare[][] Board, int CurrentPlayerTurn)
     {
         playerList = PlayerList;
         board = Board;
         currentPlayerTurn = CurrentPlayerTurn;
-        currentMoves = new ArrayList<>();
+        
     }
 
     public ArrayList<Player> getPlayerList(){return playerList;}
@@ -33,8 +42,7 @@ public class Game
     public void setCurrentPlayerTurn(int CurrentPlayerTurn){currentPlayerTurn = CurrentPlayerTurn;}
 
 
-    public ArrayList<MoveRequest> getCurrentMoves(){return currentMoves;}
-    public void setCurrentMoves(ArrayList<MoveRequest> CurrentMoves){currentMoves = CurrentMoves;}
+    
 
     public String toString()
     {
