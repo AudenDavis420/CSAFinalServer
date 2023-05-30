@@ -14,14 +14,17 @@ public class Unit
 {
     private int team;
     private String type;
+
     private String attackType;
+
     private int health;
+
     private float range;
+
     private int damage;
     private int wallDamage;
+    
     private int attacksLeft;
-    
-    
     private float mobility; 
 
     public int getTeam(){return team;}
