@@ -47,9 +47,9 @@ public class CollisionManager
         //checks for any collsions
         for (LinearCollider collider: colliderList)
         {
-            System.out.println(collider);
+            
             LinearCollider testCollider = new LinearCollider(new Vector2(moveRequest.getStartX() + 0.5, moveRequest.getStartY() + 0.5), new Vector2(moveRequest.getGoalX() + 0.5, moveRequest.getGoalY() + 0.5));
-            if (getCollision(collider, testCollider) == null)
+            if (getCollision(collider, testCollider) != null)
             {
                 return false;
             }
@@ -62,6 +62,8 @@ public class CollisionManager
     //calculates the exact point of intersection of two colliders (if present)
     private static Vector2 getCollision(LinearCollider collider1, LinearCollider collider2)
     {
+        System.out.println(collider1);
+        System.out.println(collider2);
         double xa1 = collider1.getStart().getX();
         double ya1 = collider1.getStart().getY();
         double xa2 = collider1.getEnd().getX();
@@ -108,9 +110,11 @@ public class CollisionManager
             return null;
         }
 
-        
-
+        System.out.println(new Vector2(interX, interY));
+        System.out.println("~~~~~~~~~");
         return new Vector2(interX, interY);
+
+       
         
 
     }
@@ -140,7 +144,7 @@ public class CollisionManager
             return false;
         }
 
-
+        
         return true;
     }
 

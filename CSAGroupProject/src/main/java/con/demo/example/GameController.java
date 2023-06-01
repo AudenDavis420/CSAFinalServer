@@ -31,18 +31,19 @@ public class GameController
         unitAttacks.put("giant", 1);
         
     }
+
     //GameController constructor for making a new game
     public GameController()
     {
         ArrayList<Player> playerList = new ArrayList<>();
 
         //creates the board
-        GameSquare[][] board = new GameSquare[2][2];
+        GameSquare[][] board = new GameSquare[3][3];
 
         //initializes the piece
-        for (int y = 0; y < 2; y++)
+        for (int y = 0; y < board.length; y++)
         {
-            for (int x = 0; x < 2; x++)
+            for (int x = 0; x < board[1].length; x++)
             {
                 board[y][x] = new GameSquare("grass", null);
             }
@@ -50,9 +51,10 @@ public class GameController
 
 
         //add two new pieces
-        board[0][1] = new GameSquare("sand", new Unit(1, "bomber", "melee", 50, 1, 50, 2,100,1));
-        board[0][0] = new GameSquare("sand", new Unit(2, "giant", "melee", 400, 1, 50, 1,50,1));
-
+        board[0][0] = new GameSquare("grass", new Unit(1, "archer", "ranged", 50, 10, 50, 2,25,1));
+        board[1][1] = new GameSquare("grass", new Unit(2, "wall", "none", 400, 0, 50, 0,0,0));
+        board[2][2] = new GameSquare("grass", new Unit(2, "giant", "ranged", 50, 10, 50, 2,25,1));
+        
 
         
         game = new Game(playerList,board,0);
@@ -183,11 +185,22 @@ public class GameController
                 {
                     return Answer.FALSE;
                 }
-                defender.setHealth(defender.getHealth() - attacker.getDamage());
+
+
+                if (defender.getType().equals("wall"))
+                {
+                    defender.setHealth(defender.getHealth() - attacker.getWallDamage());
+                }
+                else
+                {
+                    defender.setHealth(defender.getHealth() - attacker.getDamage());
+                }
+
                 if (defender.getHealth() <= 0)
                 {
                     game.getBoard()[move.getGoalY()][move.getGoalX()].setUnit(null);
                 }
+
                 if(attacker.getType().equals("bomber"))
                 {
                     game.getBoard()[move.getStartY()][move.getStartX()].setUnit(null);
@@ -198,11 +211,30 @@ public class GameController
 
             if(game.getBoard()[move.getStartY()][move.getStartX()].getUnit().getAttackType().equals("ranged"))
             {
+                if(attacker.getAttacksLeft() <= 0 ){return Answer.FALSE;}
+                if(CollisionManager.isLegelMove(move, game.getBoard()))
+                {
+                    if (defender.getType().equals("wall"))
+                    {
+                        defender.setHealth(defender.getHealth() - attacker.getWallDamage());
+                    }
+                    else
+                    {
+                        defender.setHealth(defender.getHealth() - attacker.getDamage());
+                    }
+                    
+                    if (defender.getHealth() <= 0)
+                    {
+                        game.getBoard()[move.getGoalY()][move.getGoalX()].setUnit(null);
+                    }
 
+                    attacker.setAttacksLeft(attacker.getAttacksLeft()-1);
+                    return Answer.TRUE;
+                }
             }
         }
         
-        return Answer.TRUE;
+        return Answer.FALSE;
     }
 
 }
